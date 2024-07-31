@@ -1,28 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <BaseButton :btnText="'Добавить'"/>
+    <BaseInput :placeholder="'Добавить'"/>
+    <BaseSearchSelect :options="[{title: 1}, {title: 2}]"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import BaseButton from '@/components/BaseButton.vue'
+import BaseInput from '@/components/BaseInput.vue'
+import BaseSearchSelect from '@/components/BaseSearchSelect.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    BaseButton,
+    BaseInput,
+    BaseSearchSelect
   }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import './assets/main.scss';
+
 </style>
