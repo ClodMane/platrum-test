@@ -2,7 +2,7 @@
     <component
       :is="tag"
       type="button"
-      class="btn primary"
+      :class="classes"
       :disabled="isBtnDisabled"
       @click="$emit('click')"
     >
@@ -26,10 +26,19 @@
         type: Boolean,
         default: false,
       },
+      variant: {
+      type: String,
+      default: 'primary',
     },
+    },
+    computed: {
+    classes() {
+      return ['btn', this.variant]
+    },
+  },
   };
   </script>
-  <style lang="scss">
+  <style lang="scss" scoped>
   
   .btn {
     text-transform: uppercase;
@@ -51,6 +60,12 @@
     color: #fff;
     padding: 12px 20px;
   }
+  .white {
+  background: $white-color;
+  border: 1px solid $primary-color;
+  color: $black-color;
+  padding: 11px 20px;
+}
   
   .btn:hover {
     box-shadow: $button-shadow-color;

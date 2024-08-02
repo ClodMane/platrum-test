@@ -81,6 +81,7 @@
       },
   
       options: {
+        immediate:true,
         handler(newVal) {
           if (this.active !== null) {
             this.$nextTick(() => {
@@ -108,7 +109,8 @@
     },
   
     mounted() {
-      this.filteredItems = this.options
+      console.log(this.options)
+      this.filteredItems = [...this.options]
     },
   
     methods: {
