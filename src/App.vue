@@ -1,27 +1,65 @@
 <template>
   <div id="app">
-    <BaseButton :btnText="'Добавить'"/>
-    <BaseInput :placeholder="'Добавить'"/>
-    <BaseSearchSelect :options="[{title: 1}, {title: 2}]"/>
+    <div class="content">
+      <div class="btn-wrapper">
+        <BaseButton :btnText="'Добавить'" @click="showModal" />
+      </div>
+      <NestedTable :items="userList"></NestedTable>
+    </div>
+    <AddModal v-if="modalVisible" @close="closeModal" />
   </div>
 </template>
 
 <script>
-import BaseButton from '@/components/BaseButton.vue'
-import BaseInput from '@/components/BaseInput.vue'
-import BaseSearchSelect from '@/components/BaseSearchSelect.vue'
+import { mapGetters } from 'vuex';
+import BaseButton from "@/components/BaseButton.vue";
+import AddModal from "@/components/AddModal.vue";
+import NestedTable from "@/components/NestedTable.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     BaseButton,
-    BaseInput,
-    BaseSearchSelect
-  }
-}
+    AddModal,
+    NestedTable,
+  },
+  data: () => {
+    return {
+      modalVisible: false,
+    };
+  },
+  computed: {
+    ...mapGetters({
+      userList: 'users/getUserList',
+    }),
+  },
+  methods: {
+    showModal() {
+      this.modalVisible = true;
+    },
+    closeModal() {
+      this.modalVisible = false;
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-@import './assets/main.scss';
+@import "./assets/main.scss";
 
+.content {
+  grid-area: content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid $primary-color;
+  border-radius: 10px;
+}
+.btn-wrapper {
+  display: flex;
+  gap: 20px;
+  width: 200px;
+}
 </style>
